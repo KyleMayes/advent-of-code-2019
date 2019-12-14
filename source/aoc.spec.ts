@@ -7,6 +7,7 @@ import { solve as day4 } from "./day4";
 import { solve as day5 } from "./day5";
 import { solve as day6 } from "./day6";
 import { solve as day7 } from "./day7";
+import { solve as day8 } from "./day8";
 
 describe("aoc", () => {
   it("day1", () => {
@@ -49,5 +50,19 @@ describe("aoc", () => {
     const [part1, part2] = day7();
     expect(part1).to.eq(440880);
     expect(part2).to.eq(3745599);
+  });
+
+  // prettier-ignore
+  it("day8", () => {
+    const [part1, part2] = day8();
+    expect(part1).to.eq(1224);
+    expect(part2).to.eq(
+      "████ ███  ████ █  █ ███  \n" +
+      "█    █  █    █ █  █ █  █ \n" +
+      "███  ███    █  █  █ █  █ \n" +
+      "█    █  █  █   █  █ ███  \n" +
+      "█    █  █ █    █  █ █ █  \n" +
+      "████ ███  ████  ██  █  █ \n",
+    );
   });
 });
