@@ -47,10 +47,14 @@ function decode(value: number): [number, Mode[]] {
 }
 
 /** An executing Intcode program. */
-export type Program = Generator<"input" | number, Memory, number>;
+export type Program = Generator<undefined, Memory, number>;
 
 /** Starts executing the supplied Intcode program. */
-export function start(initial: number[], overrides?: [number, number][]): Program {
+export function start(
+  initial: number[],
+  output: (value: number) => void,
+  overrides?: [number, number][],
+): Program {
   const memory = new Memory(initial);
   for (const [address, value] of overrides ?? []) {
     memory.write(address, value);
@@ -99,14 +103,14 @@ export function start(initial: number[], overrides?: [number, number][]): Progra
           break;
         // input
         case 3:
-          const input = yield "input";
+          const input = yield;
           if (input === undefined) throw new Error(`missing input @ ${ip}`);
           writeArg(0, input);
           ip += 2;
           break;
         // output
         case 4:
-          yield readArg(0);
+          output(readArg(0));
           ip += 2;
           break;
         // jump-if-true
@@ -157,16 +161,11 @@ export function execute(
   output: (value: number) => void,
   overrides?: [number, number][],
 ): Memory {
-  const program = start(memory, overrides);
+  const program = start(memory, output, overrides);
 
   let next = program.next();
   while (!next.done) {
-    if (next.value === "input") {
-      next = program.next(input());
-    } else {
-      output(next.value as number);
-      next = program.next();
-    }
+    next = program.next(input());
   }
 
   return next.value as Memory;
