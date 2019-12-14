@@ -8,6 +8,7 @@ import { solve as day5 } from "./day5";
 import { solve as day6 } from "./day6";
 import { solve as day7 } from "./day7";
 import { solve as day8 } from "./day8";
+import { solve as day9 } from "./day9";
 
 describe("aoc", () => {
   it("day1", () => {
@@ -64,5 +65,11 @@ describe("aoc", () => {
       "█    █  █ █    █  █ █ █  \n" +
       "████ ███  ████  ██  █  █ \n",
     );
+  });
+
+  it("day9", () => {
+    const [part1, part2] = day9();
+    expect(part1).to.eq(3780860499);
+    expect(part2).to.eq(33343);
   });
 });
