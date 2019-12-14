@@ -10,6 +10,7 @@ import { solve as day7 } from "./day7";
 import { solve as day8 } from "./day8";
 import { solve as day9 } from "./day9";
 import { solve as day10 } from "./day10";
+import { solve as day11 } from "./day11";
 
 describe("aoc", () => {
   it("day1", () => {
@@ -78,5 +79,19 @@ describe("aoc", () => {
     const [part1, part2] = day10();
     expect(part1).to.eq(256);
     expect(part2).to.eq(1707);
+  });
+
+  // prettier-ignore
+  it("day11", () => {
+    const [part1, part2] = day11();
+    expect(part1).to.eq(2160);
+    expect(part2).to.eq(
+      ".█....███..████.████..██...██..████.████...\n" +
+      ".█....█..█....█.█....█..█.█..█.█....█......\n" +
+      ".█....█..█...█..███..█....█....███..███....\n" +
+      ".█....███...█...█....█....█.██.█....█......\n" +
+      ".█....█.█..█....█....█..█.█..█.█....█......\n" +
+      ".████.█..█.████.████..██...███.█....████...\n",
+    );
   });
 });
