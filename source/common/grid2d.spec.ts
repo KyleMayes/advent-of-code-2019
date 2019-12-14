@@ -55,9 +55,9 @@ describe("grid2d/Grid2d", () => {
     grid.write(0, 1, 322);
     const entries = grid.entries();
     expect(entries).to.have.length(3);
-    expect(entries[0]).to.deep.eq([0, 0, 4]);
-    expect(entries[1]).to.deep.eq([1, 0, 17]);
-    expect(entries[2]).to.deep.eq([0, 1, 322]);
+    expect(entries[0]).to.deep.eq([[0, 0], 4]);
+    expect(entries[1]).to.deep.eq([[1, 0], 17]);
+    expect(entries[2]).to.deep.eq([[0, 1], 322]);
   });
 
   it("can determine the axis-aligned bounding box", () => {

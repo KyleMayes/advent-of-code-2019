@@ -1,3 +1,4 @@
+import { Point2d } from "./geom2d";
 import { computeIfAbsent } from "./map";
 
 /** A 2D axis-aligned rectangle. */
@@ -62,12 +63,12 @@ export class Grid2d<T> {
   }
 
   /** Returns the values previously written to this grid. */
-  entries(): [number, number, T][] {
-    const entries: [number, number, T][] = [];
+  entries(): [Point2d, T][] {
+    const entries: [Point2d, T][] = [];
 
     for (const [y, row] of this.cells.entries()) {
       for (const [x, value] of row.entries()) {
-        entries.push([x, y, value]);
+        entries.push([[x, y], value]);
       }
     }
 
@@ -85,7 +86,7 @@ export class Grid2d<T> {
     let maxX = Number.MIN_SAFE_INTEGER;
     let maxY = Number.MIN_SAFE_INTEGER;
 
-    for (const [x, y] of this.entries()) {
+    for (const [[x, y]] of this.entries()) {
       minX = Math.min(minX, x);
       minY = Math.min(minY, y);
       maxX = Math.max(maxX, x);
@@ -100,7 +101,7 @@ export class Grid2d<T> {
     const bbox = options?.bbox ?? this.bbox();
 
     let array = new Array(bbox.area()).fill(options?.fill ?? " ");
-    for (const [x, y, value] of this.entries()) {
+    for (const [[x, y], value] of this.entries()) {
       array[(y - bbox.minY) * bbox.width + (x - bbox.minX)] = print(value);
     }
 
