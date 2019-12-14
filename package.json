@@ -3,7 +3,8 @@
   "name": "advent-of-code-2019",
   "scripts": {
     "format": "prettier --write package.json tsconfig.json source/**/*.ts",
-    "test": "mocha -r ts-node/register source/**/*.spec.ts"
+    "test": "mocha -r ts-node/register source/**/*.spec.ts",
+    "day": "node run.js"
   },
   "dependencies": {
     "lodash": "~4.17.15"
