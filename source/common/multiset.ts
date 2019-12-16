@@ -29,10 +29,10 @@ export class Multiset<T> {
     return this.map.has(value);
   }
 
-  /** Adds an occurrence of the supplied value to this set. */
-  add(value: T): number {
-    this.total += 1;
-    return merge(this.map, value, 1, (a, b) => a + b) - 1;
+  /** Adds the supplied number of occurrences of the supplied value to this set. */
+  add(value: T, occurrences: number = 1): number {
+    this.total += occurrences;
+    return merge(this.map, value, occurrences, (a, b) => a + b) - occurrences;
   }
 
   /** Returns the number of occurrences of the supplied value in this set. */

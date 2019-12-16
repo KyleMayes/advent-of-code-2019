@@ -29,7 +29,7 @@ describe("multiset/Multiset", () => {
     expect(set.get("C")).to.eq(0);
   });
 
-  it("can have value occurrences added", () => {
+  it("can have single value occurrences added", () => {
     const set = new Multiset<string>();
     expect(set.size).to.eq(0);
 
@@ -46,6 +46,25 @@ describe("multiset/Multiset", () => {
     expect(set.size).to.eq(3);
     expect(set.get("A")).to.eq(2);
     expect(set.get("B")).to.eq(1);
+  });
+
+  it("can have multiple value occurrences added", () => {
+    const set = new Multiset<string>();
+    expect(set.size).to.eq(0);
+
+    expect(set.add("A", 2)).to.eq(0);
+    expect(set.size).to.eq(2);
+    expect(set.get("A")).to.eq(2);
+
+    expect(set.add("B", 2)).to.eq(0);
+    expect(set.size).to.eq(4);
+    expect(set.get("A")).to.eq(2);
+    expect(set.get("B")).to.eq(2);
+
+    expect(set.add("A", 2)).to.eq(2);
+    expect(set.size).to.eq(6);
+    expect(set.get("A")).to.eq(4);
+    expect(set.get("B")).to.eq(2);
   });
 
   it("can have single value occurrences deleted", () => {
