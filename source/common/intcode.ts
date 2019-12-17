@@ -47,7 +47,7 @@ function decode(value: number): [number, Mode[]] {
 }
 
 /** An executing Intcode program. */
-export type Program = Generator<undefined, Memory, number>;
+export type Program = Generator<undefined, Memory, number | "exit">;
 
 /** Starts executing the supplied Intcode program. */
 export function start(
@@ -105,6 +105,7 @@ export function start(
         case 3:
           const input = yield;
           if (input === undefined) throw new Error(`missing input @ ${ip}`);
+          if (input === "exit") return memory;
           writeArg(0, input);
           ip += 2;
           break;
@@ -157,7 +158,7 @@ export function start(
 /** Executes the supplied Intcode program. */
 export function execute(
   memory: number[],
-  input: () => number,
+  input: () => number | "exit",
   output: (value: number) => void,
   overrides?: [number, number][],
 ): Memory {

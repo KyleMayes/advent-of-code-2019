@@ -1,6 +1,11 @@
 /** A 2D point. */
 export type Point2d = [number, number];
 
+/** Returns whether the two supplied points are equal. */
+export function eq2d(a: Point2d, b: Point2d): boolean {
+  return a[0] === b[0] && a[1] === b[1];
+}
+
 /** Returns the distance between the two supplied points. */
 export function getDistance(a: Point2d, b: Point2d): number {
   return Math.sqrt(Math.pow(b[0] - a[0], 2) + Math.pow(b[1] - a[1], 2));
