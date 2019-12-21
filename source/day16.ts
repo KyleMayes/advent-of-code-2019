@@ -2,7 +2,10 @@ import * as _ from "lodash";
 
 import * as input from "./common/input";
 
-const numbers = input.read("day16.txt").split("").map(s => parseInt(s, 10));
+const numbers = input
+  .read("day16.txt")
+  .split("")
+  .map(s => parseInt(s, 10));
 
 const base = [0, 1, 0, -1];
 

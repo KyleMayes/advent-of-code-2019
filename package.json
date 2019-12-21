@@ -2,7 +2,7 @@
   "private": true,
   "name": "advent-of-code-2019",
   "scripts": {
-    "format": "prettier --write package.json tsconfig.json source/**/*.ts",
+    "format": "prettier --write package.json tsconfig.json source/*.ts source/**/*.ts",
     "test": "mocha -r ts-node/register source/**/*.spec.ts",
     "day": "node run.js"
   },

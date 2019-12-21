@@ -25,10 +25,12 @@ function parseReaction(string: string): Reaction {
   return { inputs, output };
 }
 
-const reactions = new Map(input.lines("day14.txt").map(s => {
-  const reaction = parseReaction(s);
-  return [reaction.output.name, reaction];
-}));
+const reactions = new Map(
+  input.lines("day14.txt").map(s => {
+    const reaction = parseReaction(s);
+    return [reaction.output.name, reaction];
+  }),
+);
 
 function getOre(fuel: number): number {
   const inputs = new Multiset<string>();
@@ -56,7 +58,7 @@ function getOre(fuel: number): number {
           inputs.add(input.name, multiple * input.amount);
         }
 
-        extra.add(name, (multiple * reaction.output.amount) - required);
+        extra.add(name, multiple * reaction.output.amount - required);
       }
     }
 
