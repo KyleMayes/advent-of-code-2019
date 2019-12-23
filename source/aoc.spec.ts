@@ -16,6 +16,7 @@ import { solve as day13 } from "./day13";
 import { solve as day14 } from "./day14";
 import { solve as day15 } from "./day15";
 import { solve as day17 } from "./day17";
+import { solve as day23 } from "./day23";
 
 describe("aoc", () => {
   it("day1", () => {
@@ -128,5 +129,11 @@ describe("aoc", () => {
     const [part1, part2] = day17();
     expect(part1).to.eq(3660);
     expect(part2).to.eq(962913);
+  });
+
+  it("day23", () => {
+    const [part1, part2] = day23();
+    expect(part1).to.eq(26163);
+    expect(part2).to.eq(18733);
   });
 });
