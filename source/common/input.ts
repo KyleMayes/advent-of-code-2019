@@ -2,12 +2,10 @@ import * as fs from "fs";
 import * as path from "path";
 
 /** Reads the supplied input file. */
-export function read(input: string): string {
+export function read(input: string, trim: boolean = true): string {
   const p = path.resolve(__dirname, "../../input", input);
-  return fs
-    .readFileSync(p)
-    .toString("utf8")
-    .trim();
+  const contents = fs.readFileSync(p).toString("utf8");
+  return trim ? contents.trim() : contents;
 }
 
 /** Reads the supplied input file and gets the non-empty comma-separated values. */
